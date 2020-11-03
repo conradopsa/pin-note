@@ -1,0 +1,29 @@
+@import "../../style/breakpoints.scss";
+
+main {
+    min-height: 77vh;
+
+    & > div {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+        @include large-desktop-down {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        @include desktop-down {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @include tablet-down {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @include large-phone-down {
+            grid-template-columns: 1fr;
+        }
+
+        grid-gap: 10px;
+        padding: 10px;
+    }
+}

@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
-import './App.scss';
+import React from 'react';
+import './App.scoped.scss';
 import { IconPlus, IconMenu2, IconList, IconGrid } from 'tabler-icons'
-import iconHorse from './assets/icon/horse.svg'
-
-interface ICard {
-  title: string,
-  text: string
-}
+import iconHorse from '../assets/icon/horse.svg'
+import CardList from './card/cardList';
+import { CardItem } from './card';
 
 export interface AppProps {
 
 }
 
 export interface AppState {
-  cards: ICard[]
+  cards: CardItem[]
 }
 
 class App extends React.Component<AppProps, AppState> {
-  state: AppState = { cards: [] }
-
-  cards: ICard[] = [];
+  state!: AppState;
+  cards: CardItem[] = [];
 
   insertNote(e: any) {
-    this.cards.push({ title: "Seu título...", text: "Seu texto..." })
+    this.cards.push(new CardItem({
+      title: "Seu título...",
+      text: "Seu texto..."
+    }))
 
     const newState: AppState = { cards: this.cards };
-
     this.setState(newState)
   }
 
@@ -35,7 +33,7 @@ class App extends React.Component<AppProps, AppState> {
       <section>
         <main>
           <header>
-            <h2>Pin Note</h2><img src={iconHorse} />
+            <h2>Pin Note</h2><img alt="horse" src={iconHorse} />
           </header>
 
           <nav>
@@ -47,16 +45,7 @@ class App extends React.Component<AppProps, AppState> {
             </div>
           </nav>
 
-          <main id="cards">
-            <div>
-              {this.cards.map((card, index) => (
-                <div className="card" key={index}>
-                  <header>{card.title}</header>
-                  <main>{card.text}</main>
-                </div>
-              ))}
-            </div>
-          </main>
+          <CardList cards={this.cards} />
 
           <footer>
             <h4>Aprendendo React</h4>
