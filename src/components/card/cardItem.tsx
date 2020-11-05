@@ -1,31 +1,30 @@
 import React from "react";
-import './cardItem.scoped.scss';
-//import './cardItem.scss'
+import { CardItemStyled } from "../../style/card";
 
 export interface CardItemProps {
-    title: string;
-    text: string;
+  title: string;
+  text: string;
 }
 
-interface CardItemState {
-
-}
+interface CardItemState {}
 
 export class CardItem extends React.Component<CardItemProps, CardItemState> {
-    state!: CardItemState;
-    props: CardItemProps;
+  state!: CardItemState;
+  props: CardItemProps;
 
-    constructor(props: CardItemProps) {
-        super(props);
-        this.props = props;
-    }
+  constructor(props: CardItemProps) {
+    super(props);
+    this.props = props;
+  }
 
-    render() {
-        return (
-            <section>
-                <header>{this.props.title}</header>
-                <main>{this.props.text}</main>
-            </section>
-        );
-    }
+  render() {
+    return (
+      <CardItemStyled>
+        <section>
+          <header>{this.props.title}</header>
+          <main>{this.props.text}</main>
+        </section>
+      </CardItemStyled>
+    );
+  }
 }
